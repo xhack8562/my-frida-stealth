@@ -85,10 +85,6 @@ jobs:
       with:
         node-version: 18
 
-    - uses: fusion-engineering/setup-git-credentials@v2
-      with:
-        credentials: ${{secrets.GIT_CREDENTIALS}}
-
     - name: set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -117,7 +113,7 @@ jobs:
       run: |
         git config --global user.name "${{ secrets.GIT_NAME }}"
         git config --global user.email "${{ secrets.GIT_EMAIL }}"
-        git clone ${{ secrets.PATCH_REPO }}
+        git clone https://github.com/hluwa/strongR-frida-android.git Patchs
         export ANDROID_NDK_ROOT=${{ steps.setup-ndk.outputs.ndk-path }}
         git clone --recurse-submodules https://github.com/frida/frida
         cd frida
